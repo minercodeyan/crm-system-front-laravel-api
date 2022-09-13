@@ -14,6 +14,9 @@ export default function (instance) {
         },
         logout() {
             localStorage.removeItem('user')
+        },
+        getAll(){
+            return instance.get('/students')
         }
     }
 }
