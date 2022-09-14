@@ -1,3 +1,9 @@
 .bg-gray{
-    background:   gray;
+    background: gray;
+}
+
+.myForm{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
 }

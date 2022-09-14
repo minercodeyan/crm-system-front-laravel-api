@@ -3,6 +3,7 @@ import App from './App.vue'
 import {createVuetify} from "vuetify";
 import { loadFonts } from './plugins/webfontloader'
 import router from "@/router";
+import store from "@/store-vuex";
 import * as vComponents from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import components from '@/components'
@@ -30,5 +31,7 @@ components.forEach(component=>{
 })
 
 
-app.use(vuetify).use(router)
+app.use(vuetify)
+    .use(router)
+    .use(store)
   .mount('#app')

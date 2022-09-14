@@ -1,14 +1,16 @@
+import router from "@/router";
 export default function (instance) {
     return {
         signUp(user) {
-            return instance.post('/auth/signup', user)
+            return instance.post('/registration', user)
         },
         signIn(user) {
-            return instance.post('/auth/signin', user)
+            return instance.post('/login', user)
                 .then(response => {
-                    if (response.data.token) {
-                        localStorage.setItem('user', JSON.stringify(response.data))
+                    if (response.data.resultData.token) {
+                        localStorage.setItem('user', JSON.stringify(response.data.resultData))
                     }
+                    router.push({name: 'Home'})
                     return response.data
                 })
         },

@@ -1,23 +1,30 @@
 <template>
   <v-app>
-    <v-main>
-      <HelloWorld/>
-    </v-main>
+    <component :is="layout">
+      <router-view/>
+    </component>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MainLayout from "@/layouts/MainLayout";
+import AuthLayout from "@/layouts/AuthLayout";
 
 export default {
   name: 'App',
-
+  computed:{
+    layout(){
+      return (this.$route.meta.layout || 'main') + '-layout'
+    }
+  },
   components: {
-    HelloWorld,
+    MainLayout,AuthLayout
   },
 
-  data: () => ({
-    //
-  }),
 }
 </script>
+
+
+<style>
+@import "assets/style.css";
+</style>
