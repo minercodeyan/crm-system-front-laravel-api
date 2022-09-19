@@ -1,9 +1,16 @@
 .bg-gray{
     background: gray;
+    height: 100%;
+    font-family: "Roboto", sans-serif;
 }
 
 .myForm{
     display: flex;
+    padding: 20px;
     flex-direction: column;
-    width: 30%;
+    width: 500px;
+}
+
+.text__center{
+    text-align: center;
 }

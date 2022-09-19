@@ -21,7 +21,7 @@ import { mapGetters } from "vuex"
 export default {
 
   name: "NavBar",
-  computed: mapGetters(['authorizedUsername'])
+  computed: mapGetters(['authorizedUsername']),
 
 }
 </script>

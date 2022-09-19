@@ -5,21 +5,37 @@ import indexAPI from "@/services/intial-api/indexAPI";
 export default {
     actions: {
         async loginUser(ctx, user) {
-            const data= await indexAPI.users.signIn(user)
-            ctx.commit('authUser', data.resultData)
+            await indexAPI.users.signIn(user)
+                .catch(error=>ctx.commit('loginErrorData', error.response.data))
+        },
+        async registerUser(ctx, user) {
+            await indexAPI.users.signUp(user)
+                .catch(error=>ctx.commit('registerErrorData', error.response.data))
+        },
+        logoutUser() {
+            indexAPI.users.logout()
         }
     },
     mutations: {
-        authUser(state, result) {
-            state.user = result.user
+        loginErrorData(state,errorData){
+            state.errors=errorData
+        },
+        registerErrorData(state,errorData){
+            state.errors=errorData
         }
     },
     state: {
-        user: Object
+        user: {},
+        errors:{}
     },
     getters: {
+        errors(state){
+            return state.errors
+        },
         authorizedUsername(state) {
-            console.log(state)
+            if(localStorage.getItem('userData')){
+            state.user = JSON.parse(localStorage.getItem('userData')).user
+            }
             return state.user.name
         }
     }
